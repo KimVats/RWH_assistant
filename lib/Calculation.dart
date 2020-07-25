@@ -187,12 +187,22 @@ class _CalculationsState extends State<Calculations> {
     );
   }
 
-  void submitit(double n, m) {
+ void submitit(double n, m) {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       result = n * m;
+      print("hey");
       print(result);
+      const url = "https://flutterupdate-f584b.firebaseio.com/pro.json";
+      http.post(
+        url,
+        body: json.encode({
+          'result': result.toDouble(),
+        }),
+      );
+      print("hey");
     }
   }
 }
+
 
